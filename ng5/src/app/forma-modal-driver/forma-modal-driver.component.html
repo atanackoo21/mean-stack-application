@@ -1,0 +1,69 @@
+<div class="modal-header">
+    <h3>Apliciraj za posao</h3>
+</div>
+    <form class="form-control" #frm= "ngForm" (ngSubmit)="submitForm(frm)">
+            <div class="form-group">
+              <label for="nameStud" class="col-form-label">Ime</label>
+              <input type="text" 
+              class="form-control" 
+              id="nameStud"
+              name="nameStud" ngModel required>
+            </div>
+            <div class="form-group">
+              <label for="surnameStud" class="col-form-label">Prezime</label>
+              <input type="text"
+               class="form-control"
+               id="surnameStud"
+               name="surnameStud" ngModel required>
+            </div>
+  
+            <div class="form-group">
+              <label for="email" class="col-form-label">Email</label>
+              <input type="text"
+               class="form-control"
+               id="email"
+               name="email" ngModel required>
+            </div>
+
+            <label for="email" class="col-form-label">Pol:</label>
+            <div class="form-group" *ngFor='let gen of gender'>
+              
+              <input  type="radio"
+              
+               id="pol"
+               value='{{gen}}'
+               name="pol" 
+               (change) = 'genderHandler($event)' required>
+               <i class='choice'>{{gen}}</i>
+            </div>
+
+            <div class="form-group" >
+              <label for="godiste" id="godinaRodjenja" class="col-form-label">Godina rodjenja</label> &nbsp;
+              <select (change) = 'eventHandler($event)'>
+                   <option *ngFor= 'let god of godine' name="godiste"  class="form-control" id="godiste" value="{{god}}" required>{{god}}</option>
+              </select>
+            </div>
+  
+            <div class="form-group" *ngIf='!logger'>
+              <label for="godiste" id="godinaRodjenja" class="col-form-label">Strucna sprema</label> &nbsp;
+              <select (change) = 'fakultetChoice($event)' required>
+                   <option *ngFor= 'let fax of strucnaSprema'  class="form-control" id="faculty" name="faculty" value="{{fax}}" >{{fax}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Motivacaiona poruka</label>
+              <textarea class="form-control" 
+              id="message"
+              name="message" ngModel required></textarea>
+            </div>
+
+            <p class='prijave'>*Nepotpune prijave necemo uzimati u obrazlozenje</p> 
+
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="activeModal.dismiss('Close clicked')">Odustani</button>
+            <button type="submit" class="btn btn-success" [disabled] = frm.invalid>Save</button> 
+            <!-- [disabled]="!myForm.valid" -->
+            </div>
+
+          </form>

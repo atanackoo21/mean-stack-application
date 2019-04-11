@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row">
+  
+          <div class="col-lg-1">
+          </div>
+  
+          <div class="col-lg-10" >
+              <h3 class='naslov'>Hvala vam što kupujete kod nas</h3>
+              <div class="list-group" *ngFor="let cart of listOfCarts;let i = index;"> 
+                  <a href="/" class="list-group-item list-group-item-action flex-column align-items-start start">
+                    <div class="d-flex w-100 justify-content-between" >
+                      <h5 class="mb-1">ID korpe: {{cart._id}} </h5>
+                      <p> <small class='datum'>Datum: {{cart.date}}</small> </p> 
+                     <!-- <div *ngFor="let it of itemz;let i = index;"> -->
+                        
+                     </div>
+                     <div *ngFor="let c of cart.items">
+                        <p> Naziv: {{c}} rsd</p>
+                     </div>
+                   
+                    
+                  </a>
+              </div>
+          </div>
+
+          <div class="col-lg-10" *ngIf='!isLogged() && !isAdminLogged()'>
+            <h3>U našoj prodavnici još niste obavili kupovinu. Obavite je odmah klikom na dugme ispod!</h3>
+            <button class="btn btn-primary dug" (click)='onKupovina()'> Kupovina </button>
+                <div class="list-group" > 
+                    <a href="/" class="list-group-item list-group-item-action flex-column align-items-start start">
+                      <div class="d-flex w-100 justify-content-between" >
+                        <h5 class="mb-1">ID kupovine</h5>
+                        <small>Datum kupovine: </small>
+                      </div>
+                      <small> Cena po komadu:  Ukupna cena u dinarima:</small> &nbsp;
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-10" *ngIf='isAdminLogged()'>
+              <h3 class='naslov'>Kupovine: </h3>
+              <div class="list-group" *ngFor="let cart of listOfCartsAdmin;let i = index;"> 
+                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start start">
+                    <div class="d-flex w-100 justify-content-between" >
+                      <h5 class="mb-1">ID korpe: {{cart._id}}</h5>
+                      <h5 class="mb-1">ID usera: {{cart.user}}</h5>
+                      <p> <small class='datum'>Datum: {{cart.date}}</small> </p> 
+                        
+                     </div>
+                     <div *ngFor="let c of cart.items;let i = index;">
+                        <p> Naziv: {{c}} rsd</p>
+                     </div>
+                  </a>
+              </div>
+            </div>
+    
+  
+          <div class="col-lg-1">
+              
+          </div>
+    </div>
+</div>
+
+<!-- <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>COLUMN 1</th>
+        <th>COLUMN 2</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr *ngFor="let cart of listOfCarts;let i = index;">
+        <td>{{cart.date}}</td>
+        <td *ngFor="let c of cart.items">ok: {{c}}</td>
+      </tr>
+    </tbody>
+  </table> -->

@@ -1,0 +1,145 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template-overviews/shop-homepage)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+
+ body {
+    padding-top: 54px;
+  }
+  .dug{
+    color: white;
+  }
+ .selekcija{
+   width: 100%;
+ }
+ .kartica{
+  max-height: 350pt;
+  max-width: 200pt;
+}
+.korpa{
+  max-width: 100%;
+}
+.nazPr{
+  text-align: center;
+  color: #039be5 ;
+}
+select{
+  // background-color: #6d6c6c;
+  color: #6d6c6c;
+}
+option{
+  color: #6d6c6c;
+
+}
+.cena{
+  text-align: center;
+  color: #d6192c;
+}
+.forma{
+  margin-top: 10pt;
+  margin-bottom: 5pt;
+  color: #6d6c6c;
+}
+.kat{
+  text-align: center;
+  color: #6d6c6c;
+  
+}
+.droup:hover{
+  color: white;
+  background-color: #039be5 ;
+  }
+.droup{
+  color: #039be5;
+}
+
+  .droup:link{
+    color: #039be5;
+    }
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  // background-color: yellow;
+   padding: 20px;
+  // font-size: 20px;
+}
+.dugm{
+  margin-left:3pt;
+  margin-top: 3pt;
+}
+  .dugme{
+    display: inline-block;
+    margin-left:2pt;
+    margin-top: 3pt;
+    // margin-top: 15px;
+  }
+
+  #addItem{
+    margin-left: 30pt;
+  }
+
+  .karta-slika{
+    height: 170pt;
+  }
+  
+  .footer {
+    /*padding-top: 100%;*/
+    margin-top:5%;
+  }
+  
+  .navbarcevic{
+    padding-left: 20px;
+    color:white;
+  }
+  navbar{
+    color:white;
+  }
+  
+  .slika_sredina_dole{
+    padding-top:-15pt;
+  }
+  
+  .belo{
+    color:whitesmoke;
+    list-style: none;
+  }
+  
+  .inline li {
+    display:inline;
+    white-space: inherit;
+  }
+  
+  .slika_sredina{
+    margin-left: 13pt;
+    /*margin-bottom: 45pt;
+    margin-top: 5pt;*/
+  }
+  
+  .kov:hover{
+    color:black;
+  }
+  
+  a:hover {
+    color: #cc0000;
+    text-decoration: none;
+    }
+  
+  .nav-link:hover{
+    color:black;
+  }
+  .batonCart{
+    width: 30pt;
+    height: 30pt;
+  }
+  li { cursor: pointer; }
+ 
+  
+  @media (min-width: 992px) {
+    body {
+      padding-top: 56px;
+    }
+  }
+  
+  

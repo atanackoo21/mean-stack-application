@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-2">
+
+    </div>
+
+        <div class="col-lg-8">
+            <table class="table table-striped ">
+                <thead>
+                  <tr>
+                    <th scope="col">Br.</th>
+                    <th scope="col">Ime</th>
+                    <th scope="col">Prezime</th>
+                    <th scope="col">Fakultet/Ss</th>
+                    <th scope="col">Godina rodjenja</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Poruka</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor='let job of jobs; let i = index'>
+                  <tr>
+                    <th scope="row">{{i+1}}.</th>
+                    <td>{{job.firstName}}</td>
+                    <td>{{job.lastName}}</td>
+                    <td>{{job.faculty}}</td>
+                    <td>{{job.birth}}</td>
+                    <td>{{job.email}}</td>
+                    <td>{{job.message}}</td>
+                  </tr>
+                  <button type='button' class="btn btn-danger tblDugme" (click)='onDeleteJob(job)'>Refuse</button>
+                </tbody>
+              </table>
+        </div>
+
+          <div class="col-lg-2">
+          </div>
+    </div>
+</div>
+

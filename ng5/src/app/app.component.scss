@@ -1,0 +1,66 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template-overviews/shop-homepage)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+
+ body {
+    padding-top: 54px;
+    background-color:blue;
+  }
+
+   
+  .footer {
+    /*padding-top: 100%;*/
+    margin-top:5%;
+  }
+  .navbarcevic{
+    padding-left: 20px;
+    color:white;
+  }
+  navbar{
+    color:white;
+  }
+  
+  .slika_sredina_dole{
+    padding-top:-15pt;
+  }
+  
+  .belo{
+    color:whitesmoke;
+    list-style: none;
+  }
+  
+  .inline li {
+    display:inline;
+    white-space: inherit;
+  }
+  
+  .slika_sredina{
+    margin-left: 13pt;
+    /*margin-bottom: 45pt;
+    margin-top: 5pt;*/
+  }
+  
+  .kov:hover{
+    color:black;
+  }
+  
+  a:hover {
+    color: #cc0000;
+    text-decoration: none;
+    }
+  
+  .nav-link:hover{
+    color:black;
+  }
+  
+  li { cursor: pointer; }
+  
+  @media (min-width: 992px) {
+    body {
+      padding-top: 56px;
+    }
+  }
+  
+  

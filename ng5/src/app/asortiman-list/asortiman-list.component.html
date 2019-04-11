@@ -1,0 +1,130 @@
+<div class="container">
+  
+  <div class="row">
+      <div class="col-lg-2">
+        <h4 class="my-4">Kategorije</h4>
+        <div class="list-group">
+          <a  href="/" routerLink = "/" class="list-group-item droup" (click) ='onKomletnaPonuda()'>Kompletna ponuda</a>
+          <a href="/keramika" routerLink = "/" class="list-group-item droup" (click) = 'onKeramika()'>Keramika</a>
+          <a  href="/rosfraj" routerLink = "/" class="list-group-item droup" (click) = 'onRosfraj()'>Rosfraj</a>
+          <a  href="staklo" routerLink = "/" class="list-group-item droup" (click) = 'onStaklo()'>Staklo</a>
+        </div>
+        
+        
+      </div>      
+  
+      <div class="col-lg-{{sirinaAsortimana()}}">
+
+        <app-carousel-basic></app-carousel-basic>
+
+          <div class="row">
+            <div *ngFor="let asortiman of shoppingItemList" class="col-lg-4 col-md-6 mb-4">
+              <div  class="card kartica">
+                <a ><img class="card-img-top karta-slika" src="assets/icon/{{asortiman.image}}" alt=""></a>
+                <div  class="card-body">
+                  <h4 class="card-title nazPr">
+                     {{asortiman.name}} 
+                  </h4>
+                  <h6 class='kat'>Kategorija: {{asortiman.category}} </h6>
+                  <p class="card-text cena"><b>{{asortiman.price}},00 RSD</b></p>
+                </div>
+
+                <div class="card-footer" *ngIf="isLoggedAdmin()">
+                  <button class="btn dugme btn-danger" (click)= "deleteItem(asortiman._id)">Delete</button>
+                   <!-- &nbsp;     -->              
+                    &nbsp; 
+                  <a href="#editForm">  <button class="btn btn-primary dugme" (click)= "showEditForm(asortiman)" [disabled]="toggleForm"> Izmeni </button> </a>
+                </div>
+                
+                <div class="card-footer" *ngIf="!isLoggedAdmin()">
+                  <button *ngIf='isLoggedSomeone()' class="btn dugme btn-success" id="addItem" (click)= "addItemToCart(asortiman)">Add</button>
+                  <button *ngIf='!isLoggedSomeone()' class="btn dugme btn-success" id="addItem" (click)= 'onAddUnregister()'>Add</button>                  
+                </div>
+              </div>
+            </div>
+      </div>
+
+        <div *ngIf='isLoggedAdmin()'>
+          <form  #frm= "ngForm" (ngSubmit)="addItem(frm)" *ngIf="!toggleForm">
+            <h2  id="add-item">Add item</h2>
+            <div class="form-group">
+            <label for="">Name: </label>
+            <input type="text" class="form-control" name="name" value="" ngModel required >
+            </div>
+            <div class="form-group">
+            <label for="">Quantity: </label>
+            <input type="number" class="form-control" name="quantity" value="" ngModel required>
+            </div>
+            <div class="form-group">
+              <label for="">Price: (rsd)</label>
+              <input type="number" class="form-control" name="price" value="" ngModel required>
+            </div>
+            <div class="form-group">
+
+            <label for="">Category: </label>
+            <input type="text" class="form-control" name="category" value="" ngModel required >
+            </div>
+            <div class="form-group">
+            <label for="">Image: </label>
+            <input type="text" class="form-control" name="image" value="" ngModel required>
+            </div> 
+            <button type="submit" name="button" class="btn btn-success" [disabled] = frm.invalid >Add</button>   
+          </form>
+        </div>
+
+        <form id="editForm"  #editForm= "ngForm" (ngSubmit)="editItem(editForm)" *ngIf= "toggleForm">
+            <h2  id="edit-item">Edit item</h2>
+            <div class="form-group">
+            <label for="">Name: </label>
+            <input type="text" class="form-control" name="name" value="" [ngModel]="selectedItem.name">
+            </div>
+            <div class="form-group">
+            <label for="">Quantity: </label>
+            <input type="number" class="form-control" name="quantity" value="" [ngModel]="selectedItem.quantity">
+            </div>
+            <div class="form-group">
+              <label for="">Price: (rsd)</label>
+              <input type="number" class="form-control" name="price" value="" [ngModel]="selectedItem.price">
+            </div>
+            <div class="form-group">
+
+            <label for="">Category: </label>
+            <input type="text" class="form-control" name="category" value=""  [ngModel]="selectedItem.category" required >
+            </div>
+            <div class="form-group">
+            <label for="">Image: </label>
+            <input type="text" class="form-control" name="image" value="" [ngModel]="selectedItem.image">
+            </div> 
+            <button type="submit" name="button" class="btn btn-success">Save</button>
+            &nbsp;
+            <button name="button" class="btn btn-warning dug" (click) = "onOdustani(editForm)">Odustani</button>   
+        </form>
+      
+      </div>
+
+
+      <!-- KORPA -->
+      <div class="col-lg-3 korpa " *ngIf="!isLoggedAdmin()"  >
+        <div class="mb-4 sticky">
+          <div  class="card h-100" >
+              <div class="card-header bg-primary " style="color:white;"><h4 style="color:white;" class="card-title"> &nbsp; Korpa <span class="fa fa-shopping-cart"></span></h4>
+              <br> Naziv: &nbsp; Kolicina &nbsp; Cena
+              </div>
+              <div  class="card-body" *ngFor="let item of chartList">
+                  <p class="card-text">{{item.name}} &nbsp; &nbsp; &nbsp; {{item.quantity}} &nbsp; &nbsp; {{item.price * item.quantity}} rsd</p>
+                  <button class='btn btn-danger batonCart' (click)='deleteItemFromCart(item)'>-</button>&nbsp;<button class='btn batonCart' (click)='changeItemFromCart(item)'>+</button>
+              </div>
+              <div class="card-footer">
+                Iznos racuna: {{racun}} rsd
+              </div>
+              <div class="card-footer">
+                  <button class="btn btn-danger" (click) = 'onOdustaniOdKupovine()'>Odustani</button>
+                  <button class="btn btn-primary dugm" (click)="onPoruci()">Poruči</button> 
+              </div>
+          </div>
+        </div>
+      </div>
+      
+  </div>    
+
+</div>
